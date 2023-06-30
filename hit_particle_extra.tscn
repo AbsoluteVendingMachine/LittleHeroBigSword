@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3jklibxra8br"]
+
+[ext_resource type="Texture2D" uid="uid://6udapijq7xrx" path="res://hittSheet.png" id="1_j1ruk"]
+[ext_resource type="Script" path="res://hit_particle_extra.gd" id="2_8qcf1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sjvr3"]
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsvsk"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_j1ruk")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 3
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_js1ss"]
+material = SubResource("StandardMaterial3D_qsvsk")
+
+[node name="Particles" type="GPUParticles3D"]
+amount = 1
+lifetime = 1.25
+speed_scale = 5.0
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_sjvr3")
+draw_pass_1 = SubResource("QuadMesh_js1ss")
+script = ExtResource("2_8qcf1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

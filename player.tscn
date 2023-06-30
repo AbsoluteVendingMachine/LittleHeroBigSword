@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsp22v8s2ufkh"]
+
+[ext_resource type="PackedScene" uid="uid://c7o1qemaqkvg8" path="res://player.blend" id="1_ggskx"]
+[ext_resource type="Texture2D" uid="uid://u70yfsehy8mx" path="res://face.png" id="2_swfxg"]
+
+[node name="player" instance=ExtResource("1_ggskx")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0.115919, 0.335802, 0)
+bones/2/position = Vector3(0.75874, 0.048326, -0.185187)
+bones/2/rotation = Quaternion(0.00300028, 0.00315256, 0.74215, 0.670219)
+bones/5/position = Vector3(-0.541529, 0.0234874, 0.146224)
+bones/5/rotation = Quaternion(8.5263e-08, 8.33131e-08, -0.715238, 0.698881)
+bones/8/position = Vector3(0.843983, 0.134805, -0.186118)
+bones/8/rotation = Quaternion(-1.93993e-07, -1.00428e-08, 0.998698, -0.0510177)
+bones/10/position = Vector3(-0.636506, -0.0521729, 0.14464)
+bones/10/rotation = Quaternion(1.59377e-09, 1.94109e-07, -0.00892247, 0.99996)
+bones/12/position = Vector3(0.123149, 0.586679, -0.0593544)
+bones/13/rotation = Quaternion(-0.494112, 0.0834387, -0.10183, 0.859373)
+bones/14/rotation = Quaternion(-0.346144, 0.343414, 0.386226, 0.782995)
+bones/15/position = Vector3(0.121096, 0.587918, 0.0569876)
+bones/16/rotation = Quaternion(0.0732711, 0.836697, 0.471566, 0.268692)
+bones/17/rotation = Quaternion(-0.499235, -0.742157, 0.0955834, 0.436843)
+
+[node name="AnimationPlayer" parent="." index="1"]
+playback_process_mode = 0
+speed_scale = 0.0
+
+[node name="Face" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, -0.701009, 2.28662, 0)
+cast_shadow = 0
+texture = ExtResource("2_swfxg")

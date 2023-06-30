@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://j1xhllgxtmpw"]
+
+[ext_resource type="PackedScene" uid="uid://bn8r3ldjdj8e0" path="res://block.blend" id="1_42eu5"]
+[ext_resource type="Script" path="res://block.gd" id="1_ids5w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h23ik"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bc4tc"]
+size = Vector3(2.25, 2.25, 2.25)
+
+[node name="Block" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_mask = 4
+script = ExtResource("1_ids5w")
+
+[node name="Model" parent="." instance=ExtResource("1_42eu5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h23ik")
+
+[node name="Sensor" type="Area3D" parent="." groups=["hurt"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sensor"]
+shape = SubResource("BoxShape3D_bc4tc")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="area_entered" from="Sensor" to="." method="_on_sensor_area_entered"]

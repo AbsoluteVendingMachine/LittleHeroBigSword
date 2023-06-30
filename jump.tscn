@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://2hv1ura4oxos"]
+
+[ext_resource type="Texture2D" uid="uid://d6yokl38rl4f" path="res://swing1-Sheet.png" id="1_ftbn1"]
+[ext_resource type="Script" path="res://hit_particle_redo.gd" id="2_hbukm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptrm3"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_ftbn1")
+texture_filter = 0
+billboard_mode = 3
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kixot"]
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 2.25
+anim_speed_max = 3.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m1y6g"]
+orientation = 2
+
+[node name="Particles" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_ptrm3")
+material_overlay = SubResource("StandardMaterial3D_ptrm3")
+cast_shadow = 0
+lifetime = 0.7
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_kixot")
+draw_pass_1 = SubResource("PlaneMesh_m1y6g")
+script = ExtResource("2_hbukm")
+
+[node name="Free" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="timeout" from="Free" to="." method="_on_free_timeout"]

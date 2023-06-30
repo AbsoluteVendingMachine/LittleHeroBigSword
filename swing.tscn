@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6kr3irsh2rhh"]
+
+[ext_resource type="Script" path="res://swing.gd" id="1_5jdtt"]
+[ext_resource type="PackedScene" uid="uid://kuuog1lagfns" path="res://projectile.blend" id="1_nhuyx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uk70m"]
+size = Vector3(1, 1, 2.28881)
+
+[node name="Swing" type="CharacterBody3D"]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_5jdtt")
+
+[node name="Projectile" parent="." instance=ExtResource("1_nhuyx")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.236801, 0, 0)
+shape = SubResource("BoxShape3D_uk70m")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

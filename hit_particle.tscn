@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw2nv33nc2hmv"]
+
+[ext_resource type="Texture2D" uid="uid://rf1pexl8m1ih" path="res://particle1.png" id="1_xk1ah"]
+[ext_resource type="Texture2D" uid="uid://c3dyi141w3g0r" path="res://particle2.png" id="2_486cy"]
+[ext_resource type="Texture2D" uid="uid://n3kti4plqta1" path="res://particle3.png" id="3_t1h7r"]
+[ext_resource type="Texture2D" uid="uid://dibv7ifeedybt" path="res://particle4.png" id="4_2vqkt"]
+[ext_resource type="Script" path="res://hit_particle.gd" id="5_q3l22"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqe2o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xk1ah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_486cy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t1h7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2vqkt")
+}],
+"loop": false,
+"name": &"animation",
+"speed": 11.0
+}]
+
+[node name="hit_particle" type="AnimatedSprite3D"]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+cast_shadow = 0
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_wqe2o")
+animation = &"animation"
+frame = 3
+frame_progress = 1.0
+script = ExtResource("5_q3l22")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
